@@ -74,8 +74,6 @@ function drawLine(p0, p1) {
 Canvas {
     id: canvas
     anchors.fill: parent
-    renderStrategy: Canvas.Threaded
-    renderTarget: Canvas.FramebufferObject
 
     property var context
 
