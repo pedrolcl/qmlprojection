@@ -9,26 +9,26 @@ Window {
 
     Timer { repeat: true; running: true; onTriggered: canvas.requestPaint(); interval: 16 }
 
-    property var elapsed: 0
-    property var fill: true
+    property int elapsed: 0
+    property bool fill: true
 
-    property var angleX: 2 * Math.PI / 1480
-    property var angleY: 2 * Math.PI / 1480
-    property var angleZ: 2 * Math.PI / 1480
+    property real angleX: 2 * Math.PI / 1480
+    property real angleY: 2 * Math.PI / 1480
+    property real angleZ: 2 * Math.PI / 1480
 
-    property var rotX: true
-    property var rotY: true
-    property var rotZ: true
+    property bool rotX: true
+    property bool rotY: true
+    property bool rotZ: true
 
-    property var bl: Qt.vector3d(-1, -1, 5)
-    property var br: Qt.vector3d(1, -1, 5)
-    property var tl: Qt.vector3d(-1, 1, 5)
-    property var tr: Qt.vector3d(1, 1, 5)
+    property vector3d bl: Qt.vector3d(-1, -1, 5)
+    property vector3d br: Qt.vector3d(1, -1, 5)
+    property vector3d tl: Qt.vector3d(-1, 1, 5)
+    property vector3d tr: Qt.vector3d(1, 1, 5)
 
-    property var blz: Qt.vector3d(-1, -1, 7)
-    property var brz: Qt.vector3d(1, -1, 7)
-    property var tlz: Qt.vector3d(-1, 1, 7)
-    property var trz: Qt.vector3d(1, 1, 7)
+    property vector3d blz: Qt.vector3d(-1, -1, 7)
+    property vector3d brz: Qt.vector3d(1, -1, 7)
+    property vector3d tlz: Qt.vector3d(-1, 1, 7)
+    property vector3d trz: Qt.vector3d(1, 1, 7)
 
 function worldToScreen(p) {
     let factor = canvas.width;
@@ -39,14 +39,14 @@ function worldToScreen(p) {
 }
 
 function rotateZ(p) {
-  return {x: p.x*Math.cos(angleZ) - p.y*Math.sin(angleZ), y: p.y*Math.cos(angleZ) + p.x*Math.sin(angleZ), z: p.z};
+  return Qt.vector3d(p.x*Math.cos(angleZ) - p.y*Math.sin(angleZ), p.y*Math.cos(angleZ) + p.x*Math.sin(angleZ), p.z);
 }
 
 function rotateX(p) {
     let z = p.z - 6
     let y = p.y*Math.cos(angleX) - z*Math.sin(angleX)
     let zz = (p.y*Math.sin(angleX) + z*Math.cos(angleX)) + 6
-    return {x: p.x, y: y, z: zz};
+    return Qt.vector3d(p.x, y, zz);
 }
 
 function rotateY(p) {
